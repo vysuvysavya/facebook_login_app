@@ -34,16 +34,20 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         getUserData(response.authResponse.accessToken);
     } else {
-        FB.login(function(response) {
-            console.log('FB.login response', response); // Debugging
-            if (response.authResponse) {
-                getUserData(response.authResponse.accessToken);
-            } else {
-                console.log('User cancelled login or did not fully authorize.');
-            }
-        }, {scope: 'public_profile,email,pages_show_list,pages_read_engagement'});
+        document.getElementById('fb-login-button').disabled = false;
     }
 }
+
+document.getElementById('fb-login-button').addEventListener('click', function() {
+    FB.login(function(response) {
+        console.log('FB.login response', response); // Debugging
+        if (response.authResponse) {
+            getUserData(response.authResponse.accessToken);
+        } else {
+            console.log('User cancelled login or did not fully authorize.');
+        }
+    }, {scope: 'public_profile,email,pages_show_list,pages_read_engagement'});
+});
 
 function getUserData(accessToken) {
     FB.api('/me', {fields: 'name,picture'}, function(response) {
