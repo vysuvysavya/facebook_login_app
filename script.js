@@ -1,14 +1,13 @@
-// Initialize the Facebook SDK
 window.fbAsyncInit = function() {
     FB.init({
         appId: '1484609442183223', // Replace with your Facebook App ID
-        cookie: true,             // Enable cookies to allow the server to access the session
-        xfbml: true,              // Parse social plugins on this page
-        version: 'v16.0'          // Use the latest Facebook Graph API version
+        cookie: true, // Enable cookies to allow the server to access the session
+        xfbml: true, // Parse social plugins on this page
+        version: 'v16.0' // Use the latest Facebook Graph API version
     });
 
-    FB.AppEvents.logPageView(); // Log page view for analytics
-
+    FB.AppEvents.logPageView();
+    
     // Check login status when SDK is ready
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
@@ -24,14 +23,12 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-// Check login state
 function checkLoginState() {
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
     });
 }
 
-// Handle login state changes
 function statusChangeCallback(response) {
     console.log('statusChangeCallback', response); // Debugging
     if (response.status === 'connected') {
@@ -41,7 +38,6 @@ function statusChangeCallback(response) {
     }
 }
 
-// Handle Facebook login button click
 document.getElementById('fb-login-button').addEventListener('click', function() {
     FB.login(function(response) {
         console.log('FB.login response', response); // Debugging
@@ -53,7 +49,6 @@ document.getElementById('fb-login-button').addEventListener('click', function() 
     }, {scope: 'public_profile,email,pages_show_list,pages_read_engagement'});
 });
 
-// Fetch user data
 function getUserData(accessToken) {
     FB.api('/me', {fields: 'name,picture'}, function(response) {
         console.log('User Data:', response); // Debugging
@@ -68,7 +63,6 @@ function getUserData(accessToken) {
     });
 }
 
-// Fetch pages managed by the user
 function getUserPages(accessToken) {
     FB.api('/me/accounts', function(response) {
         console.log('User Pages:', response); // Debugging
@@ -89,7 +83,6 @@ function getUserPages(accessToken) {
     });
 }
 
-// Handle get insights button click
 document.getElementById('get-insights-button').addEventListener('click', function() {
     let selectedPageId = document.getElementById('pageDropdown').value;
     let sinceDate = '2024-01-01'; // Replace with your desired start date
@@ -104,17 +97,16 @@ document.getElementById('get-insights-button').addEventListener('click', functio
     });
 });
 
-// Display page insights
 function displayPageInsights(insights) {
     let totalFollowers = insights.find(metric => metric.name === 'page_fan_adds')?.values[0]?.value || 'N/A';
     let totalEngagement = insights.find(metric => metric.name === 'page_engaged_users')?.values[0]?.value || 'N/A';
     let totalImpressions = insights.find(metric => metric.name === 'page_impressions')?.values[0]?.value || 'N/A';
     let totalReactions = insights.find(metric => metric.name === 'page_total_actions')?.values[0]?.value || 'N/A';
-    
+
     document.getElementById('totalFollowers').innerText = totalFollowers;
     document.getElementById('totalEngagement').innerText = totalEngagement;
     document.getElementById('totalImpressions').innerText = totalImpressions;
     document.getElementById('totalReactions').innerText = totalReactions;
-    
+
     document.getElementById('insights-section').style.display = 'block';
 }
