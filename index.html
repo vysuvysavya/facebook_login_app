@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Facebook Login App</title>
-  
+
   <!-- Load Facebook SDK -->
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
   
@@ -24,14 +24,14 @@
   </div>
 
   <!-- Page Selector Dropdown -->
-  <div id="page-selector" style="display:none;">
+  <div id="page-selector" style="display: none;">
     <label for="pageDropdown">Select a Page:</label>
     <select id="pageDropdown"></select>
     <button id="get-insights-button">Get Insights</button>
   </div>
 
   <!-- Insights Section (with Cards) -->
-  <div id="insights-section" style="display:none;">
+  <div id="insights-section" style="display: none;">
     <div class="card">
       <h4>Total Followers</h4>
       <p id="totalFollowers"></p>
