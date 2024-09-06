@@ -1,39 +1,91 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 800px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  header {
     text-align: center;
-    margin-top: 50px;
+    margin-bottom: 20px;
   }
   
-  #fb-login-button {
-    background-color: #4267B2;
-    color: white;
+  h1 {
+    color: #333;
+  }
+  
+  main {
+    text-align: center;
+  }
+  
+  .btn {
+    background-color: #4267b2;
+    color: #fff;
     border: none;
-    padding: 15px 30px;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
   }
   
-  #fb-login-button:hover {
+  .btn:hover {
     background-color: #365899;
   }
   
-  #user-info {
+  .info-box {
     margin-top: 20px;
   }
   
-  #page-selector {
-    margin-top: 20px;
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-top: 10px;
+  }
+  
+  .dropdown {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
   }
   
   .card {
+    background: #fafafa;
     border: 1px solid #ddd;
-    padding: 20px;
-    margin: 10px;
-    display: inline-block;
-    width: 200px;
-    text-align: center;
-    background-color: #f9f9f9;
-    border-radius: 5px;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h4 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .card p {
+    margin: 5px 0 0;
+    font-size: 18px;
+    color: #555;
   }
   

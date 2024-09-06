@@ -86,7 +86,7 @@ function getUserPages(accessToken) {
 document.getElementById('get-insights-button').addEventListener('click', function() {
     let selectedPageId = document.getElementById('pageDropdown').value;
     let sinceDate = '2024-01-01'; // Replace with your desired start date
-    let untilDate = '2024-01-31'; // Replace with your desired end date
+    let untilDate = '2024-12-12'; // Replace with your desired end date
     FB.api(`/${selectedPageId}/insights?metric=page_fan_adds,page_engaged_users,page_impressions,page_total_actions&period=total_over_range&since=${sinceDate}&until=${untilDate}`, function(response) {
         console.log('Page Insights:', response); // Debugging
         if (response && !response.error) {

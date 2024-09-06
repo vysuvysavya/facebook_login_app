@@ -12,45 +12,51 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h2>Facebook Login</h2>
+  <div class="container">
+    <header>
+      <h1>Facebook Login App</h1>
+    </header>
 
-  <!-- Facebook Login Button -->
-  <button id="fb-login-button">Login with Facebook</button>
+    <main>
+      <!-- Facebook Login Button -->
+      <button id="fb-login-button" class="btn">Login with Facebook</button>
 
-  <!-- User Information Display -->
-  <div id="user-info" style="display: none;">
-    <h3 id="userName"></h3>
-    <img id="userPicture" alt="User Picture" style="width: 100px;" />
+      <!-- User Information Display -->
+      <div id="user-info" class="info-box" style="display: none;">
+        <h2 id="userName"></h2>
+        <img id="userPicture" alt="User Picture" class="profile-pic" />
+      </div>
+
+      <!-- Page Selector Dropdown -->
+      <div id="page-selector" class="info-box" style="display: none;">
+        <label for="pageDropdown">Select a Page:</label>
+        <select id="pageDropdown" class="dropdown"></select>
+        <button id="get-insights-button" class="btn">Get Insights</button>
+      </div>
+
+      <!-- Insights Section (with Cards) -->
+      <div id="insights-section" class="info-box" style="display: none;">
+        <div class="card">
+          <h4>Total Followers</h4>
+          <p id="totalFollowers"></p>
+        </div>
+        <div class="card">
+          <h4>Total Engagement</h4>
+          <p id="totalEngagement"></p>
+        </div>
+        <div class="card">
+          <h4>Total Impressions</h4>
+          <p id="totalImpressions"></p>
+        </div>
+        <div class="card">
+          <h4>Total Reactions</h4>
+          <p id="totalReactions"></p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Link to JavaScript -->
+    <script src="script.js"></script>
   </div>
-
-  <!-- Page Selector Dropdown -->
-  <div id="page-selector" style="display: none;">
-    <label for="pageDropdown">Select a Page:</label>
-    <select id="pageDropdown"></select>
-    <button id="get-insights-button">Get Insights</button>
-  </div>
-
-  <!-- Insights Section (with Cards) -->
-  <div id="insights-section" style="display: none;">
-    <div class="card">
-      <h4>Total Followers</h4>
-      <p id="totalFollowers"></p>
-    </div>
-    <div class="card">
-      <h4>Total Engagement</h4>
-      <p id="totalEngagement"></p>
-    </div>
-    <div class="card">
-      <h4>Total Impressions</h4>
-      <p id="totalImpressions"></p>
-    </div>
-    <div class="card">
-      <h4>Total Reactions</h4>
-      <p id="totalReactions"></p>
-    </div>
-  </div>
-
-  <!-- Link to JavaScript -->
-  <script src="script.js"></script>
 </body>
 </html>
