@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  #fb-login-button {
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #fb-login-button:hover {
+    background-color: #365899;
+  }
+  
+  #user-info {
+    margin-top: 20px;
+  }
+  
