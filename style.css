@@ -22,3 +22,18 @@ body {
     margin-top: 20px;
   }
   
+  #page-selector {
+    margin-top: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
