@@ -1,4 +1,3 @@
-// Initialize Facebook SDK
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '1484609442183223',  // Replace with your Facebook App ID
@@ -8,22 +7,26 @@ window.fbAsyncInit = function() {
     });
   
     FB.AppEvents.logPageView();
+    
+    // Check login status when SDK is ready
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
   };
-  // Function to handle login status
-function checkLoginState() {
+  
+  function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
   }
   
-  // Callback to handle response
   function statusChangeCallback(response) {
+    console.log('statusChangeCallback', response);  // Debugging
     if (response.status === 'connected') {
-      // Logged into your app and Facebook
       getUserData(response.authResponse.accessToken);
     } else {
-      // Not logged in, prompt login
       FB.login(function(response) {
+        console.log('FB.login response', response);  // Debugging
         if (response.authResponse) {
           getUserData(response.authResponse.accessToken);
         } else {
@@ -33,20 +36,23 @@ function checkLoginState() {
     }
   }
   
-  // Function to get user data
   function getUserData(accessToken) {
     FB.api('/me', {fields: 'name,picture'}, function(response) {
-      document.getElementById('userName').innerText = 'Welcome, ' + response.name;
-      document.getElementById('userPicture').src = response.picture.data.url;
-      document.getElementById('user-info').style.display = 'block';
-      
-      // Fetch pages
-      getUserPages(accessToken);
+      console.log('User Data:', response);  // Debugging
+      if (response && !response.error) {
+        document.getElementById('userName').innerText = 'Welcome, ' + response.name;
+        document.getElementById('userPicture').src = response.picture.data.url;
+        document.getElementById('user-info').style.display = 'block';
+        getUserPages(accessToken);
+      } else {
+        console.log('Error fetching user data:', response.error);
+      }
     });
   }
-// Fetch pages managed by the user
-function getUserPages(accessToken) {
+  
+  function getUserPages(accessToken) {
     FB.api('/me/accounts', function(response) {
+      console.log('User Pages:', response);  // Debugging
       if (response && !response.error) {
         let pages = response.data;
         let pageDropdown = document.getElementById('pageDropdown');
@@ -58,30 +64,29 @@ function getUserPages(accessToken) {
         });
         document.getElementById('page-selector').style.display = 'block';
       } else {
-        console.log('Error fetching pages: ', response.error);
+        console.log('Error fetching pages:', response.error);
       }
     });
   }
+  
   document.getElementById('get-insights-button').addEventListener('click', function() {
     let selectedPageId = document.getElementById('pageDropdown').value;
-    
     FB.api(`/${selectedPageId}/insights?metric=page_fan_adds,page_engaged_users,page_impressions,page_total_actions&period=total_over_range&since=YYYY-MM-DD&until=YYYY-MM-DD`, function(response) {
+      console.log('Page Insights:', response);  // Debugging
       if (response && !response.error) {
         displayPageInsights(response.data);
       } else {
-        console.log('Error fetching insights: ', response.error);
+        console.log('Error fetching insights:', response.error);
       }
     });
   });
   
   function displayPageInsights(insights) {
-    // Map metrics to their respective card
     let totalFollowers = insights.find(metric => metric.name === 'page_fan_adds').values[0].value;
     let totalEngagement = insights.find(metric => metric.name === 'page_engaged_users').values[0].value;
     let totalImpressions = insights.find(metric => metric.name === 'page_impressions').values[0].value;
     let totalReactions = insights.find(metric => metric.name === 'page_total_actions').values[0].value;
   
-    // Display data in the cards
     document.getElementById('totalFollowers').innerText = totalFollowers;
     document.getElementById('totalEngagement').innerText = totalEngagement;
     document.getElementById('totalImpressions').innerText = totalImpressions;
@@ -89,4 +94,4 @@ function getUserPages(accessToken) {
   
     document.getElementById('insights-section').style.display = 'block';
   }
-      
+  
